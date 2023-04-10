@@ -1,7 +1,7 @@
 const options = {
   //root: null;
   //root: document.documentElement
-  threshold: 0.5,
+  //threshold: 0.5,
   //rootMargin: "-150px"
 };
 
@@ -58,7 +58,7 @@ function reveal() {
     for (var i = 0; i < textBoxSpans.length; i++) {
       var windowHeight = window.innerHeight;
       var elementTop = textBoxSpans[i].getBoundingClientRect().top;
-      var elementVisible = 200;
+      var elementVisible = 150;
   
       if (elementTop < windowHeight - elementVisible) {
         textBoxSpans[i].classList.add("visible");

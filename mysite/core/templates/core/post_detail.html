@@ -1,4 +1,4 @@
-{% extends 'core/blog.html' %}
+{% extends 'core/base.html' %}
 
 {% block title %}Home | {% endblock %}
 
@@ -68,4 +68,23 @@
             </div>
         </div>
     </section>
+
+    <!-- footer -->
+    <footer class="blog_footer">
+        <!-- social media -->
+        <div class="b_wrapper_sm">
+            <div class="socials_sm">
+            <a href="/post_list" title="Blog"><i class="fa fa-rss aria-hidden=true"></i> notas.blog</a>
+            <a href="https://github.com/Nota100110" title="Github"><i class="fa fa-github aria-hidden=true"></i> Github: nota100110</a>
+            <br/>
+            <a href="https://twitter.com/NotaNerd011001" title="Twitter"><i class="fa fa-twitter aria-hidden=true"></i> Twitter: @notanerd100110</a>
+            <br/>
+            <a href="https://medium.com/@notanerd1317" title="Medium"><i class="fa fa-medium aria-hidden=true"></i> Medium: @notanerd1317</a>
+            <br/><br/>
+            <span><i class="fas fa-map-marker"></i> London, UK</span>
+            </div>
+        </div>
+        <br/><br/>
+        <div class="text-center">Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights Reserved. Web Design by NotaNerd inc  &#10024;</div>
+    </footer>
 {% endblock %}
