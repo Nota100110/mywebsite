@@ -1,0 +1,20 @@
+{% extends 'core/blog.html' %}
+
+{% block title %}Edit Post | {% endblock %}
+
+{% block head_extra %}
+	{{ form.media }}
+{% endblock head_extra %}
+
+{% block content %}
+
+<div class="post-edit">
+	<h1 class="post-header">Update Post</h1>
+	    <form method="POST" class="post-form" action="" enctype="multipart/form-data">
+			{% csrf_token %}
+	        {{ form.as_p }}
+	        <button type="submit" class="save btn btn-default">Save</button>
+	    </form>
+</div>
+		<br>
+{% endblock %}

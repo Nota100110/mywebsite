@@ -1,0 +1,71 @@
+{% extends 'core/blog.html' %}
+
+{% block title %}Home | {% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container" id="blog_width">
+                <section class="section">
+                    <div class="columns">
+                        <article>
+                            {# rendering blog posts here; #}
+                            <br/>
+                            <small class="published_by">Published by Nota on the {{ posts.published_date }}&nbsp;<a href="/post_list" style="color: coral;">view all posts</a></small>
+                            <br/><br/>
+                            <h2 class="main_blog_title"><strong>{{ posts.title }}</strong></h2>
+                            <div class="post_img">
+                                <img src="{{ posts.image.url|default_if_none:'#' }}" class="img-responsive blog-img"/>
+                            </div>
+                            <section class="single_post">
+                                <p>{{ posts.intro|safe }}</p>
+                                <p>{{ posts.body|safe }}</p>
+                            </section>
+
+                            <section id="comments_section">
+                                <h4 id="id_comment_title">Comments...</h4>
+                                <hr>
+                                {% for comment in posts.comments.all %}
+                                    {% if user.is_authenticated or comment.approved_comment %}
+                                        <div class="comment">
+                                        <div class="date">
+                                        <br/>
+                                        <strong>{{ comment.author }}</strong> -
+                                        {{ comment.created_date}}
+                                        </strong>
+                                        <br/>
+                                        {{ comment.text }}
+                                        <br/><br/>
+                                    {% endif %}
+                                    {% if not comment.approved_comment %}
+                                    <!--
+                                        <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.post.pk %}"><span class="glyphicon glyphicon-remove"></span>remove</a>
+                                        <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.post.pk %}"><span class="glyphicon glyphicon-ok"></span>approve</a>
+                                    -->
+                                    {% endif %}
+                                    {% empty %}
+                                        <p>No comments here yet :(</p>
+                                {% endfor %}
+                               
+                                <form method="post" action="{% url 'add_comment_to_post' slug=posts.slug %}" class="add_comment">
+                                    <!-- form fields go here -->
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                      <label for="id_author">Name:</label>
+                                      <input type="text" name="author" id="id_author" required>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="id_text">Comment:</label>
+                                      <textarea name="text" id="id_text" required></textarea>
+                                    </div>
+                                    <input type="hidden" name="post_id" value="{{ post.id }}">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </section>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+{% endblock %}

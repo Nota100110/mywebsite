@@ -1,0 +1,66 @@
+{% extends 'core/blog.html' %}
+
+{% block title %}Home | {% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <div class="hero-body">
+            {# header logo positioning here; #}
+            <div class="container" id="blog_width">
+                <section id="background" class="section">
+                    <div class="columns">
+                        <div id="blog_posts">
+                            <br/><br/>
+                            <h2 class="main_titles">Nota's blog posts</h2>
+                            <br>
+                            {% for post in posts %}
+                                <article id="single_post">
+                                    {# rendering blog posts here; #}
+
+                                    <h2 class="main_blog_title"><a href="{% url 'post_detail' post.slug %}" style="color: purple">{{ post.title }}</a></h2>
+
+                                    <div class="post_img">
+                                        <img src="{{ post.image.url|default_if_none:'#' }}" class="img-responsive blog-img"/>
+                                    </div>
+
+                                    <section class="single_post">
+                                        <p>{{ post.intro|safe|striptags}}</p>
+
+                                        <a href="{% url 'post_detail' post.slug %}" style="color: green">Read more...</a>
+                                        <br/><br/>
+                                        {% if user.is_authenticated %}
+                                        <a href="{% url 'post_edit' post.slug %}" class="edit_btn"><i class="fas fa-edit"></i>Edit...</a>
+                                        {% endif %}
+                                    </section>
+
+                                    <br/><br/>
+                                    <section id="comments_section">
+                                        <a id="approved_comments" href="{% url 'post_detail' slug=post.slug %}" style="color: blueviolet;">Comments: {{ post.approved_comments.count }}</a>
+                                        <br/>              
+                                    </section>
+
+                                </article> 
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+                {% if posts.has_previous %}
+                    <a class="pag" href="?page={{ posts.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current pag">
+                    Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+                </span>
+        
+                {% if posts.has_next %}
+                    <a class="pag2" href="?page={{ posts.next_page_number }}" style="color:green">>></a>
+                {% endif %}
+            </span>
+        </div>
+    </section>
+
+{% endblock %}

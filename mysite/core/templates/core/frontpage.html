@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Home | {% endblock %}
+
+{% block content %}
+
+  <article id="single_post">
+      {# rendering blog posts here; #}
+
+      <h2 class="title"><a href="{% url 'post_detail' posts.slug %}" style="color: purple">{{ posts.title }}</a></h2>
+
+      <section class="single_post">
+          <p ><strong>{{ posts.intro|safe|striptags}}</strong></p>
+
+          <a href="{% url 'post_detail' posts.slug %}" style="color: green">Read more...</a>
+
+      </section>
+  </article> 
+
+{% endblock %}
