@@ -200,11 +200,46 @@ main {
     border-width: 30px;
 }
 
+#fp-info-container {
+    margin-top: 100px;
+}
+
+#fp-info ul {
+    font-family: terminal, monaco, monospace;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+
+}
+  
+#fp-info ul li {
+    margin: 0 40px;
+    list-style-type: disc; /* or 'circle' for empty circle or 'square' for square * */
+
+}
+
+@media only screen and (max-width: 810px) {
+    #fp-info ul li {
+        margin: 0 30px; /* Reduce margin between li elements for smaller screens */
+        font-size: 20px; /* Reduce font size for smaller screens */
+
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .main_image {
         width: 600px;
         max-width: 90%;
         height: auto;
+    }
+
+    #fp-info ul li {
+        margin: 0 8px; /* Reduce margin between li elements for smaller screens */
+        font-size: 14px; /* Reduce font size for smaller screens */
+
     }
 }
 
@@ -215,6 +250,7 @@ section.main-content {
     align-items: center;
     margin: auto;
     /*max-width: 80%;*/
+    flex-direction: column; /* stacks items */
 }
 
 section:nth-child(1){
@@ -260,7 +296,7 @@ section h1 {
     margin-left: 20px;
 }
 
-section h2{
+section h2 {
     font-size: 40px;
     /*text-align: center;*/
     text-transform: uppercase;
@@ -590,4 +626,12 @@ h2.title {
 .post-form {
     padding-top: 8rem;
     margin: auto;
+}
+
+#coming_soon {
+    height: 800px;
+}
+
+#cs_text {
+    padding-top: 10rem;
 }
