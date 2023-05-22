@@ -10,7 +10,7 @@
 
 #circularcursor {
     background-color: transparent;
-    border: 2px solid #fff;    
+    border: 2px solid #00FF00;    
     height: 20px;
     width: 20px;
     border-radius: 50%;
@@ -265,6 +265,7 @@ section:nth-child(2){
 section:nth-child(3){
     background: #131313;
     color: #00FF00;
+    padding-bottom: 4rem;
 }
 
 section:nth-child(4){
@@ -320,7 +321,7 @@ section .text-container .text-box {
 }
 
 #text-box-id {
-    max-width: 500px;
+    max-width: 600px;
     opacity: 0.85;
 }
 
@@ -469,6 +470,7 @@ footer {
 .add_comment {
     max-width: 500px;
 }
+
 .add_comment label {
     display: block;
     font-size: 1.2em;
@@ -628,10 +630,67 @@ h2.title {
     margin: auto;
 }
 
-#coming_soon {
-    height: 800px;
+#contact_p {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #000000;
+    border-radius: 5px;
+    padding-bottom: 3rem;
 }
+  
+.fieldWrapper {
+    margin-bottom: 10px;
+}
+  
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-family: terminal, monaco, monospace !important;
+}
+  
+input[type="text"],
+input[type="email"],
+input[type="tel"],
 
-#cs_text {
-    padding-top: 10rem;
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: #000000;
+    color: #a020f0;
+    font-family: terminal, monaco, monospace !important;
+}
+  
+input[type="submit"] {
+    background-color: #4caf50;
+    color: fuchsia;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: terminal, monaco, monospace !important;
+}
+  
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+  
+.errorlist {
+    color: red;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+  
+.success-message {
+    color: green;
+    margin-top: 10px;
 }

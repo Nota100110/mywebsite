@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+</br></br></br></br>
+    <div id="contact_p">
+        <!-- <a id="cs_text" style="color: aliceblue;"> Get in touch...</br></br>
+            notanerd1317@gmail.com 	&#10024; &#127812;</a>
+        -->
+        <form action="/contact/" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="fieldWrapper">
+                    {{ field.errors }}
+                    {{ field.label_tag }} {{ field }}
+                </div>
+            {% endfor %}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <!-- footer -->
+<footer class="blog_footer">
+    <!-- social media -->
+    <div class="b_wrapper_sm">
+        <div class="socials_sm">
+        <a href="/post_list" title="Blog"><i class="fa fa-rss aria-hidden=true"></i> notas.blog</a>
+        <a href="https://github.com/Nota100110" title="Github"><i class="fa fa-github aria-hidden=true"></i> Github: nota100110</a>
+        <br/>
+        <a href="https://twitter.com/NotaNerd011001" title="Twitter"><i class="fa fa-twitter aria-hidden=true"></i> Twitter: @notanerd100110</a>
+        <br/>
+        <a href="https://medium.com/@notanerd1317" title="Medium"><i class="fa fa-medium aria-hidden=true"></i> Medium: @notanerd1317</a>
+        <br/><br/>
+        <span><i class="fas fa-map-marker"></i> London, UK</span>
+        </div>
+    </div>
+    <br/><br/>
+    <div class="text-center">Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights Reserved. Web Design by NotaNerd inc  &#10024;</div>
+</footer>
+{% endblock %}

@@ -26,7 +26,7 @@
                                 <h4 id="id_comment_title">Comments...</h4>
                                 <hr>
                                 {% for comment in posts.comments.all %}
-                                    {% if user.is_authenticated or comment.approved_comment %}
+                                    {% if comment.approved_comment %}
                                         <div class="comment">
                                         <div class="date">
                                         <br/>

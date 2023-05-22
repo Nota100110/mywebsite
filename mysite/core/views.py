@@ -3,10 +3,11 @@ from django.utils import timezone
 from blog.models import Post, Comment
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, ContactForm
 from django.shortcuts import redirect
 from django.contrib import messages
-from django.http import JsonResponse
+#from django.http import JsonResponse
+from django.http import HttpResponse
 
 # Import Pagination Stuff
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -78,8 +79,6 @@ def post_edit(request, slug):
         form = PostForm(instance=post)
     return render(request, 'core/post_edit.html', {'form': form})
 
-from django.shortcuts import redirect
-
 def add_comment_to_post(request, slug):
     posts = get_object_or_404(Post, slug=slug)
     if request.method == "POST":
@@ -87,6 +86,7 @@ def add_comment_to_post(request, slug):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = posts
+            comment.approved_comment = False  # Set approved_comment to False by default
             comment.save()
             return redirect('post_detail', slug=posts.slug)  # Redirect to post_detail with the updated comment
     else:
@@ -96,7 +96,7 @@ def add_comment_to_post(request, slug):
 @login_required
 def comment_approve(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
-    comment.approve()
+    comment.approved_comment = True  # Set approved_comment to True when approving the comment``
     return redirect('post_detail', pk=comment.post.slug)
 
 @login_required
@@ -108,5 +108,15 @@ def comment_remove(request, pk):
 def about(request):
     return render(request, 'core/about.html')
 
-def coming_soon_page(request):
-    return render(request, 'core/coming_soon_page.html')
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save the form data to the database
+            return render(request, 'core/success.html')
+    else:
+        form = ContactForm()
+    return render(request, 'core/contact.html', {'form': form})
+
+def success(request):
+   return HttpResponse('Success!')

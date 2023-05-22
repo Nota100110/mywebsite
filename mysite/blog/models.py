@@ -33,6 +33,7 @@ class Post(models.Model):
 #       else:
 
 class Comment(models.Model):
+    #slug = models.SlugField(max_length=255, unique=True, default='generate_random_string(10)')  # add a slug field
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     author = models.CharField(max_length=200)
     text = models.TextField()
@@ -53,3 +54,11 @@ class Comment(models.Model):
         return '%s - %s' % (self.post.title, self.author)
     
 
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=100)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
